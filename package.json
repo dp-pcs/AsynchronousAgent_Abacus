@@ -1,0 +1,12 @@
+{
+  "name": "agent-benchmark-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "libs/shared"
+  ],
+  "scripts": {
+    "test": "npm -w apps/web test && npm -w libs/shared test",
+    "audit": "npm audit --audit-level=low || true"
+  }
+}
