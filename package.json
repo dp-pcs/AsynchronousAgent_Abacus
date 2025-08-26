@@ -5,8 +5,20 @@
     "apps/web",
     "libs/shared"
   ],
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
   "scripts": {
     "test": "npm -w apps/web test && npm -w libs/shared test",
-    "audit": "npm audit --audit-level=low || true"
+    "build": "npm -w apps/web run build",
+    "dev": "npm -w apps/web run dev",
+    "lint": "npm -w apps/web run lint && npm -w libs/shared run lint",
+    "audit": "npm audit --audit-level=moderate || true",
+    "clean": "npm -w apps/web run clean && npm -w libs/shared run clean",
+    "install:all": "npm ci"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
   }
 }

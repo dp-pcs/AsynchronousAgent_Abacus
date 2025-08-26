@@ -1,0 +1,43 @@
+
+name: Dependency Updates
+
+on:
+  schedule:
+    # Run weekly on Mondays at 9 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  update-dependencies:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: 'pip'
+        
+    - name: Check for npm updates
+      run: |
+        npm outdated || true
+        
+    - name: Check for Python updates
+      run: |
+        cd services/api
+        pip list --outdated || true
+        
+    - name: Run security audits
+      run: |
+        npm audit --audit-level=moderate || true
+        cd services/api
+        pip-audit --desc || true

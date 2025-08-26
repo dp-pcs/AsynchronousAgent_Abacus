@@ -5,12 +5,33 @@
     "jsx": "preserve",
     "moduleResolution": "Node",
     "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@monorepo/shared/*": [
+        "../../libs/shared/src/*"
+      ]
+    },
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
   "include": [
     "pages",
     "__tests__",
     "styles"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
